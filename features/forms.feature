@@ -17,10 +17,26 @@ Feature: Stories forms
         And I go to the <page> page
         Then I see <stories> "story-item" boxes
 
-        Scenarios:
-            | page         | stories |
-            | stories      | 0       |
-            | drafts story | 1       |
+    @list @create @admins
+    Scenario: admin users can create new stories
+        Given an admin session
+        And a section exists with name: "Main"
+        When I go to new stories page
+        And I fill the "story" form with:
+            | title   | A new story                 |
+            | date    | 2010-10-10                  |
+            | section | Main                        |
+            | intro   | This a short story          |
+            | content | This story with a happy end |
+        And I submit the "story" form
+        And I go to the stories page
+        Then I see one "story item" box
+        And the page contains theses boxes within "story item":
+            | title   | A new story                 |
+            | date    | 2010-10-10                  |
+            | section | Main                        |
+            | intro   | This a short story          |
+            | content | This story with a happy end |
 
     @create
     Scenario Outline: non admin users can not create stories
@@ -32,3 +48,11 @@ Feature: Stories forms
             | session        | content          |
             | an anonymous   | "login form" box |
             | a regular user | forbidden page   |
+
+    @create
+    Scenario: stories can not be empty
+        Given an admin session
+        When I go to new story page
+        And I submit the "story" form
+        Then these fields have errors: title, section, intro, publisher
+

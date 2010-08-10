@@ -88,6 +88,13 @@ Feature: Stories list
             | intro     | Short intro  |
             | content   | Long content |
 
+    Scenario: admins can access to the new story form
+        Given an admin session
+        When I go to stories page
+        And I click in "New story"
+        Then the header box contains "New story"
+        And the current page is a "new" action
+
     Scenario: admins can access to drafts index
         Given an admin session
         When I go to stories page
