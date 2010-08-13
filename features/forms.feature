@@ -1,7 +1,7 @@
 Feature: Stories forms
 
     @list @create @admins
-    Scenario Outline: drafts does not appear in the main index, but in the drafts index
+    Scenario Outline: drafts do not appear in the main index, but in the drafts index
         Given an admin session
         And a section exists with name: "Main"
         When I go to new stories page
@@ -17,6 +17,11 @@ Feature: Stories forms
         And I go to the <page> page
         Then I see <stories> "story-item" boxes
 
+        Scenarios:
+            | page           | stories |
+            | stories        | 0       |
+            | drafts stories | 1       |
+
     @list @create @admins
     Scenario: admin users can create new stories
         Given an admin session
@@ -31,7 +36,7 @@ Feature: Stories forms
         And I submit the "story" form
         And I go to the stories page
         Then I see one "story item" box
-        And the page contains theses boxes within "story item":
+        And the page contains these boxes within "story item":
             | title   | A new story                 |
             | date    | 2010-10-10                  |
             | section | Main                        |

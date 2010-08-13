@@ -1,15 +1,15 @@
 Feature: Stories show action
 
     @show @anonymous
-    Scenario: anonymous users can see all the data
+    Scenario: anonymous users can see all data
         Given an anonymous session
         And a story exists with title: "First story", publisher: "publisher", date: "today", section: "News", tags: "red, green", intro: "Short intro", content: "Long content"
         When I go to stories page
         And I click on "First story" within the "story-item" box
         Then the current page is a "show" action
-        And the page contains theses boxes within "story-item":
+        And the page contains these boxes within "story-item":
             | title     | First story  |
-            | publisher | jonh         |
+            | publisher | john         |
             | date      | today        |
             | section   | News         |
             | tags      | red, green   |
@@ -30,15 +30,15 @@ Feature: Stories show action
         And I submit the "story" form
         Then the current page is a "show" action
         And the flash box contains "Story updated correctly."
-        And the page contains theses boxes within "story-item":
+        And the page contains these boxes within "story-item":
             | title | Second story |
             | intro | Long intro   |
 
     @show @comments
     Scenario: any user can comment a story
-        Given a user exists with login: "jonh", password: "jonh", admin: false
+        Given a user exists with login: "john", password: "john", admin: false
         And a story exists with title: "First story"
-        And a session logged to "jonh:jonh"
+        And a session logged to "john:john"
         When I go to stories page
         And I click on "First story" within the "story-item" box
         And I click on "Add a new comment"
@@ -46,6 +46,6 @@ Feature: Stories show action
         And I submit the "new comment" form
         Then the current page is a "show" action
         And I see one "comment item" box
-        And the page contains theses boxes within "comment item":
-            | author-name | jonh                |
+        And the page contains these boxes within "comment item":
+            | author-name | john                |
             | content     | Comment for testing |

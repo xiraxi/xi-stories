@@ -17,7 +17,7 @@ Feature: Stories list
             | second story | red   |
             | dummy story  | green |
         When I go to stories page
-        And I click in "red" within the "tag-cloud" box
+        And I click on "red" within the "tag-cloud" box
         Then I see this stories:
             | first story  |
             | second story |
@@ -31,8 +31,8 @@ Feature: Stories list
             | second story | blue    |
             | dummy story  | white   |
         When I go to stories page
-        And I click in "blue" within the "sections" box
-        Then I see this stories:
+        And I click on "blue" within the "sections" box
+        Then I see these stories:
             | first story  |
             | second story |
 
@@ -54,7 +54,7 @@ Feature: Stories list
             | test 3 |
 
     @list @tags @anonymous
-    Scenario: index page shows a tag clouds
+    Scenario: index page shows a tags cloud
         Given an anonymous session
         And the following stories exist
             | tags   |
@@ -73,15 +73,15 @@ Feature: Stories list
 
     @list
     Scenario: index items show a reduced version of the story
-        Given a user exists with login: "jonh", password: "jonh", admin: true
+        Given a user exists with login: "john", password: "john", admin: true
         And a section exists with name: "News"
         And a story exists with title: "First story", publisher: "publisher", date: "today", section: "News", tags: "red, green", intro: "Short intro", content: "Long content"
-        And a session logged to "jonh:jonh"
+        And a session logged to "john:john"
         When I go to stories page
         Then I see one "story-item" box
-        And the page contains theses boxes within "story-item":
+        And the page contains these boxes within "story-item":
             | title     | First story  |
-            | publisher | jonh         |
+            | publisher | john         |
             | date      | today        |
             | section   | News         |
             | tags      | red, green   |
@@ -91,14 +91,14 @@ Feature: Stories list
     Scenario: admins can access to the new story form
         Given an admin session
         When I go to stories page
-        And I click in "New story"
+        And I click on "New story"
         Then the header box contains "New story"
         And the current page is a "new" action
 
     Scenario: admins can access to drafts index
         Given an admin session
         When I go to stories page
-        And I click in "Drafts"
+        And I click on "Drafts"
         Then the header box contains "Drafts stories"
         Then I see 0 "story-item" boxes
 
