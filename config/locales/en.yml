@@ -1,5 +1,6 @@
 en:
   stories:
+    page_title: Stories
     form:
       page_title: Stories form
       data_title: Story data
