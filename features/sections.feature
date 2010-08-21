@@ -1,6 +1,6 @@
 Feature: Story sections
 
-    Scenario Outline: non admin users can not open story sections index
+    Scenario Outline: non admin users cannot open story sections index
         Given <session> session
         When I go to new story section page
         Then I see the <content>
@@ -15,7 +15,7 @@ Feature: Story sections
         When I go to new story section page
         And I fill the "story section" form with:
             | name     | Test section |
-            | position | 1            |
+            | Position | 1            |
         And I submit the "story section" form
         Then the flash box contains "Story section created correctly."
         And the table "story sections" is:

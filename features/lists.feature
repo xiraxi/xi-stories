@@ -81,12 +81,12 @@ Feature: Stories list
         Then I see one "story-item" box
         And the page contains these boxes within "story-item":
             | title     | First story  |
-            | publisher | john         |
-            | date      | today        |
-            | section   | News         |
-            | tags      | red, green   |
-            | intro     | Short intro  |
-            | content   | Long content |
+            | Publisher | john         |
+            | Date      | today        |
+            | Section   | News         |
+            | Tags      | red, green   |
+            | Intro     | Short intro  |
+            | Content   | Long content |
 
     Scenario: admins can access to the new story form
         Given an admin session
@@ -102,7 +102,7 @@ Feature: Stories list
         Then the header box contains "Drafts stories"
         Then I see 0 "story-item" boxes
 
-    Scenario Outline: non admins can not access to drafts index
+    Scenario Outline: non admins cannot access to drafts index
         Given <session> session
         When I go to drafts story page
         Then I see the <content>

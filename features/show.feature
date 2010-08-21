@@ -8,13 +8,13 @@ Feature: Stories show action
         And I click on "First story" within the "story-item" box
         Then the current page is a "show" action
         And the page contains these boxes within "story-item":
-            | title     | First story  |
-            | publisher | john         |
-            | date      | today        |
-            | section   | News         |
-            | tags      | red, green   |
-            | intro     | Short intro  |
-            | content   | Long content |
+            | Title     | First story  |
+            | Publisher | john         |
+            | Date      | today        |
+            | Section   | News         |
+            | Tags      | red, green   |
+            | Intro     | Short intro  |
+            | Content   | Long content |
         And there is no link with "edit" text within "story-item"
         And there is no link with "destroy" text within "story-item"
 
