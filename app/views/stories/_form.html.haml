@@ -1,0 +1,42 @@
+%div.story
+  = form_for :story, :html => {:id => "story_form"}, :url => { :action => :create } do |form|
+    %fieldset
+      %legend
+        = t("stories.form.data_title")
+      %ul
+        %li
+          = form.label :title
+          = form.text_field :title
+        %li
+          = form.label :author
+          = form.text_field :author
+        %li
+          = form.label :date
+          = form.date_select :date, :start_year => 1900, :end_year => Date.today.year
+        %li
+          = form.label :section_id
+          = form.text_field :section_id
+        %li
+          = form.label :tags
+          = form.text_field :tags
+        %li
+          = form.check_box :draft
+          = form.label :draft
+        %li
+          = form.check_box :breaking
+          = form.label :breaking
+
+    %fieldset
+      %legend
+        = t("stories.form.text_title")
+      %ul
+        %li
+          = form.label :intro
+          = form.text_area :intro, :size => "60x15"
+        %li
+          = form.label :content
+          = form.text_area :content, :size => "60x25"
+
+    - buttons_bar do
+      = button_ok
+      = button_cancel(stories_path)

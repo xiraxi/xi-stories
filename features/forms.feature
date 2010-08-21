@@ -46,7 +46,7 @@ Feature: Stories forms
     @create
     Scenario Outline: non admin users can not create stories
         Given <session> session
-        When I go to new story page
+        When I go to the new story page
         Then I see the <content>
 
         Scenarios:

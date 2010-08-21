@@ -1,0 +1,28 @@
+class StoriesController < ApplicationController
+
+  only_admins( :new, :create, :edit, :update )
+
+  def new
+    @story = Story.new
+  end
+
+  def create
+    @story = Story.new(params[:story])
+    @story.user = current_user
+
+    if @story.save
+      flash[:notice] = I18n.t("stories.notice_saved") 
+      redirect_to story_path(@story)
+    else
+      render :action => "new"
+    end
+  end
+
+  def show
+    @story = Story.find(params[:id])
+
+    if current_user and not current_user.admin? and @story.draft?
+      return not_found
+    end
+  end
+end
