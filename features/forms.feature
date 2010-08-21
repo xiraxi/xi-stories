@@ -3,17 +3,15 @@ Feature: Stories forms
     @list @create @admins
     Scenario Outline: drafts do not appear in the main index, but in the drafts index
         Given an admin session
-        And a section exists with name: "Main"
-        When I go to new story page
-        And I fill the "story" form with:
+        When I go to the new story page
+        And I fill in the following:
             | Title   | A new story                 |
             | Date    | today                       |
-            | Section | Main                        |
             | Intro   | This a short story          |
             | Content | This story with a happy end |
         And I check "Flash"
         And I check "Draft"
-        And I submit the "story" form
+        And I submit the form
         And I go to the <page> page
         Then I see <stories> "story-item" boxes
 
@@ -25,21 +23,18 @@ Feature: Stories forms
     @list @create @admins
     Scenario: admin users can create new stories
         Given an admin session
-        And a section exists with name: "Main"
-        When I go to new story page
-        And I fill the "story" form with:
+        When I go to the new story page
+        And I fill in the following:
             | Title   | A new story                 |
             | Date    | 2010-10-10                  |
-            | Section | Main                        |
             | Intro   | This a short story          |
             | Content | This story with a happy end |
-        And I submit the "story" form
+        And I submit the form
         And I go to the stories page
         Then I see one "story item" box
         And the page contains these boxes within "story item":
             | Title   | A new story                 |
             | Date    | 2010-10-10                  |
-            | Section | Main                        |
             | Intro   | This a short story          |
             | Content | This story with a happy end |
 
@@ -57,7 +52,7 @@ Feature: Stories forms
     @create
     Scenario: stories can not be empty
         Given an admin session
-        When I go to new story page
-        And I submit the "story" form
-        Then these fields have errors: Title, Section, Intro, Publisher
+        When I go to the new story page
+        And I submit the form
+        Then these fields have errors: Title, Intro
 
