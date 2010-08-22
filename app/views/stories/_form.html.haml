@@ -13,7 +13,7 @@
           = form.date_select :date, :start_year => 1900, :end_year => Date.today.year
         %li
           = form.label :section_id
-          = form.text_field :section_id
+          = form.select :section_id, Story::Section.all.map{ |s| [s.name, s.id] }
         %li
           = form.label :tag_list
           = form.text_field :tag_list

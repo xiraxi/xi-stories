@@ -1,11 +1,13 @@
 en:
   stories:
+    title: Stories
     page_title: Stories
+    notice_saved: Story successfully saved
+    metadata: "Added by %{user} at %{date} in %{section}"
     form:
       page_title: Stories form
       data_title: Story data
       text_title: Story text
-      notice_saved: Story successfully saved
       title:
         edit: Edit story
         new: New story
