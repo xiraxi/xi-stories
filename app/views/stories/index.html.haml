@@ -6,3 +6,14 @@
 = render :partial => "item", :collection => @stories, :locals => { :short => true }
 
 = will_paginate @stories
+
+- content_for :secondary_bar do
+  %div.box
+    %h2
+      = t("stories.sections.title")
+    %div.content
+      %div.story-sections
+        %ol
+          - Story::Section.order('position').each do |section|
+            %li
+              = link_to(section.name, {:section => section}, :class => "section")

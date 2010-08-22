@@ -11,6 +11,8 @@ en:
       title:
         edit: Edit story
         new: New story
+    sections:
+      title: Sections
 
   activerecord:
     errors:
