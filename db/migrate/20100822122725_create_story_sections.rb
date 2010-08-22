@@ -2,7 +2,7 @@ class CreateStorySections < ActiveRecord::Migration
   def self.up
     create_table :story_sections do |t|
       t.string    :name
-      t.integer   :order
+      t.integer   :position
       t.datetime  :deleted_at
 
       t.timestamps

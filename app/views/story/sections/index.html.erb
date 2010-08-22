@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Order</th>
+    <th>Position</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +12,7 @@
 <% @story_sections.each do |story_section| %>
   <tr>
     <td><%= story_section.name %></td>
-    <td><%= story_section.order %></td>
+    <td><%= story_section.position %></td>
     <td><%= link_to 'Show', story_section %></td>
     <td><%= link_to 'Edit', edit_story_section_path(story_section) %></td>
     <td><%= link_to 'Destroy', story_section, :confirm => 'Are you sure?', :method => :delete %></td>
