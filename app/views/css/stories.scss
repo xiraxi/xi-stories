@@ -1,0 +1,10 @@
+
+.story {
+  @include item;
+  border-bottom: none;
+
+  h2 {
+    clear: none;
+  }
+}
+
