@@ -1,0 +1,21 @@
+- if short
+  %h2
+    = link_to(item.title, story_path(item))
+- else
+  %h1
+    = item.title
+
+%div.story
+  %div.user-photo
+    = raw user_photo(item.user)
+  %div.metadata
+    = t("stories.metadata", :user => item.user.complete_name, :date => l(item.date, :format => :long), :section => item.section.name)
+  %div.intro
+    = item.intro
+  - if !short
+    %div.text 
+      = item.content
+
+    %div.buttons
+      = link_button_edit(edit_story_path(item))
+      = link_button_delete(story_path(item))
