@@ -3,6 +3,7 @@
     %fieldset
       %legend
         = t("stories.form.data_title")
+      = error_messages_for @story
       %ul
         %li
           = form.label :title
@@ -14,8 +15,8 @@
           = form.label :section_id
           = form.text_field :section_id
         %li
-          = form.label :tags
-          = form.text_field :tags
+          = form.label :tag_list
+          = form.text_field :tag_list
         %li
           = form.check_box :draft
           = form.label :draft
