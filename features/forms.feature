@@ -6,14 +6,14 @@ Feature: Stories forms
         When I go to the new story page
         And I fill in the following:
             | Title   | A new story                 |
-            | Date    | today                       |
             | Intro   | This a short story          |
             | Content | This story with a happy end |
-        And I check "Flash"
+        And I select "1980-08-19" as the "Date" date
+        And I check "Breaking"
         And I check "Draft"
         And I submit the form
         And I go to the <page> page
-        Then I see <stories> "story-item" boxes
+        Then I see <stories> "story" boxes
 
         Scenarios:
             | page           | stories |
@@ -26,9 +26,9 @@ Feature: Stories forms
         When I go to the new story page
         And I fill in the following:
             | Title   | A new story                 |
-            | Date    | 2010-10-10                  |
             | Intro   | This a short story          |
             | Content | This story with a happy end |
+        And I select "1980-08-19" as the "Date" date
         And I submit the form
         And I go to the stories page
         Then I see one "story item" box
