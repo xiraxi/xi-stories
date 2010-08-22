@@ -10,9 +10,9 @@ class Story < ActiveRecord::Base
   validates :title,   :presence => true
   validates :intro,   :presence => true
   validates :content, :presence => true
-  validates :author,  :presence => true
+  #validates :author,  :presence => true
 
-  validate :existance_of_author
+  #validate :existance_of_author
   def existance_of_author
     if author.nil? or not User.confirmed.find_by_id(author.id)
       errors.add :author, I18n.t("activerecord.errors.story.attributes.author.existance")
