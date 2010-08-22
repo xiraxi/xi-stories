@@ -1,5 +1,5 @@
 %div.story
-  = form_for :story, :html => {:id => "story_form"}, :url => { :action => :create } do |form|
+  = form_for @story, :html => {:id => "story_form"} do |form|
     %fieldset
       %legend
         = t("stories.form.data_title")
@@ -35,6 +35,6 @@
           = form.label :content
           = form.text_area :content, :size => "60x25"
 
-    - buttons_bar do
+    = buttons_bar do
       = button_ok
       = button_cancel(stories_path)
