@@ -4,18 +4,18 @@ Feature: Stories list
     Scenario: every index page shows 5 stories per page
         Given an anonymous session
         And 10 stories exist
-        When I go to stories page
-        Then I see 5 "story-item" boxes
+        When I go to the stories page
+        Then I see 5 "story" boxes
         And I see the "pagination" box
 
     @list @tags @anonymous
     Scenario: results can be filtered by a tag
         Given an anonymous session
         And the following stories exist
-            | title        | tags  |
-            | first story  | red   |
-            | second story | red   |
-            | dummy story  | green |
+            | title        | tag_list |
+            | first story  | red      |
+            | second story | red      |
+            | dummy story  | green    |
         When I go to stories page
         And I click on "red" within the "tag-cloud" box
         Then I see this stories:
@@ -30,7 +30,7 @@ Feature: Stories list
             | first story  | blue    |
             | second story | blue    |
             | dummy story  | white   |
-        When I go to stories page
+        When I go to the stories page
         And I click on "blue" within the "sections" box
         Then I see these stories:
             | first story  |
@@ -45,7 +45,7 @@ Feature: Stories list
             | test 2 |
             | test 3 |
             | ignore |
-        When I go to stories page
+        When I go to the stories page
         And I type "test" on the "q" field
         And I submit the "story" form
         Then I see this stories:
@@ -64,7 +64,7 @@ Feature: Stories list
             | green  |
             | orange |
             | blue   |
-        When I go to stories page
+        When I go to the stories page
         Then I see the "tag-cloud" box with this links:
             | red    |
             | green  |
@@ -77,9 +77,9 @@ Feature: Stories list
         And a section exists with name: "News"
         And a story exists with title: "First story", publisher: "publisher", date: "today", section: "News", tags: "red, green", intro: "Short intro", content: "Long content"
         And a session logged to "john:john"
-        When I go to stories page
-        Then I see one "story-item" box
-        And the page contains these boxes within "story-item":
+        When I go to the stories page
+        Then I see 1 "story" box
+        And the page contains these boxes within "story":
             | title     | First story  |
             | Publisher | john         |
             | Date      | today        |
@@ -90,21 +90,21 @@ Feature: Stories list
 
     Scenario: admins can access to the new story form
         Given an admin session
-        When I go to stories page
+        When I go to the stories page
         And I click on "New story"
         Then the header box contains "New story"
         And the current page is a "new" action
 
     Scenario: admins can access to drafts index
         Given an admin session
-        When I go to stories page
+        When I go to the stories page
         And I click on "Drafts"
         Then the header box contains "Drafts stories"
         Then I see 0 "story-item" boxes
 
     Scenario Outline: non admins cannot access to drafts index
         Given <session> session
-        When I go to drafts story page
+        When I go to the drafts stories page
         Then I see the <content>
 
         Scenarios:

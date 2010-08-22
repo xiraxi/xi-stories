@@ -6,9 +6,8 @@ class Story < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true, :max_length => 50
 
-  validates :title,   :length => { :maximum => 255 }
+  validates :title,   :length => { :maximum => 255 }, :presence => true
   validates :section, :presence => true
-  validates :title,   :presence => true
   validates :intro,   :presence => true
   validates :content, :presence => true
   #validates :author,  :presence => true

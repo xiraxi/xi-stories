@@ -4,7 +4,10 @@ class StoriesController < ApplicationController
 
   def index
     if params[:draft]
-      redirect_to login_path unless current_user
+      unless current_user
+        redirect_to login_path
+        return
+      end
       return forbidden unless current_user.admin?
       dataset = Story.draft
     else
@@ -22,7 +25,7 @@ class StoriesController < ApplicationController
       @tag_selected = o
     end
 
-    @stories = dataset.order(:date).paginate(:page => params[:page])
+    @stories = dataset.order(:date).paginate(:page => params[:page], :per_page => 5)
 
   end
 
