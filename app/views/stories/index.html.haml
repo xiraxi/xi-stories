@@ -17,3 +17,5 @@
           - Story::Section.order('position').each do |section|
             %li
               = link_to(section.name, {:section => section}, :class => "section")
+
+  = tag_cloud_generator(Story)
