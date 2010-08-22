@@ -3,6 +3,27 @@ class StoriesController < ApplicationController
   only_admins( :new, :create, :edit, :update )
 
   def index
+    if params[:draft]
+      redirect_to login_path unless current_user
+      return forbidden unless current_user.admin?
+      dataset = Story.draft
+    else
+      dataset = Story.visible
+    end
+
+    if o = params[:section]
+      section = Story::Section.find(o)
+      dataset = dataset.where(["section_id = ?", section.id])
+      @section_selected = 0
+    end
+
+    if o = params[:tag]
+      dataset = dataset.tagged_with(o)
+      @tag_selected = o
+    end
+
+    @stories = dataset.order(:date).paginate(:page => params[:page])
+
   end
 
   def show

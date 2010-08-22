@@ -1,114 +1,19 @@
-- content_for :page_title, "Portada"
+- content_for :page_title, t("stories.page_title") 
 
-#main
-  %h1
-    Un título de noticia bastante deposuit y algo lipsum
+%h1
+  = t("stories.title")
 
-  %div.story
-    %div.user-photo
-      %a{:href => "user/profile"}
-        = image_tag "user_avatar.png"
-    %div.metadata
-      Hace 30 minutos por
-      %a{:href => "perfil/Tirso"} Tirso
-      en
-      %a{:href => "noticias/tema"} publicaciones
-    %div.text 
-      %p
-        Sed gravida semper nunc, sed convallis est sodales gravida. Proin eu sem nisl. Nulla facilisi. Nullam a faucibus purus. Mauris ac neque vitae erat mollis fermentum a id massa. Donec fringilla, arcu id euismod tempus, dolor massa bibendum eros, ut mollis nulla justo vel turpis. Pellentesque dapibus nibh et libero porta convallis. Sed ultricies erat vitae lectus blandit vitae consectetur leo imperdiet. Vestibulum vitae augue eu elit tincidunt rhoncus. Suspendisse ut mi ut est tempus pulvinar. Integer iaculis gravida tellus, nec tincidunt libero pharetra ut. Etiam et nulla ac tortor volutpat pretium at vulputate odio. Proin turpis justo, sollicitudin sit amet adipiscing in, cursus at nulla. Quisque rutrum gravida ante vitae lacinia. Nulla facilisi. Sed orci nunc, egestas eget consectetur quis, venenatis quis nisi. Sed nisi augue, tempus dictum varius ut, pretium at nulla. Vestibulum pellentesque suscipit eleifend.
-      %p
-        Sed ultricies erat vitae lectus blandit vitae consectetur leo imperdiet. Vestibulum vitae augue eu elit tincidunt rhoncus. Suspendisse ut mi ut est tempus pulvinar. Integer iaculis gravida tellus, nec tincidunt libero pharetra ut. Etiam et nulla ac tortor volutpat pretium at vulputate odio. Proin turpis justo, sollicitudin sit amet adipiscing in, cursus at nulla. Quisque rutrum gravida ante vitae lacinia. Nulla facilisi.
+= render :partial => "item", :collection => @stories, :locals => { :short => true }
 
+= will_paginate @stories
 
-  %h2
-    Comentarios
-
-  %div.comments
-    %a.button
-      Añadir comentario
-    %div.comment-count 
-      Hay 2 comentarios
-    %div.comment
-      %div.user-photo
-        %a{:href => "user/profile"}
-          = image_tag "user_avatar.png"
-      %div.metadata
-        Hace 10 minutos por
-        %a{:href => "perfil/Eli"} Eli
-      %div.text 
-        %p
-          Guau, guau, guau. Aenean at lorem quis mauris egestas eleifend. Pellentesque ut ligula a lacus porttitor lobortis. Donec sed nunc in augue ornare tristique adipiscing non nisi.
-      %div.buttons
-        %a.button{:href => "edit_comment"}
-          Editar 
-        %a.button{:href => "delete_comment"}
-          Borrar
-      %div.report-spam
-        %a{:href => "report_spam"}
-          Denunciar spam 
-    %div.comment
-      %div.user-photo
-        %a{:href => "user/profile"}
-          = image_tag "user_avatar.png"
-      %div.metadata
-        Hace 10 minutos por
-        %a{:href => "perfil/Eli"} Eli
-      %div.text 
-        %p
-          Guau, guau, guau. Aenean at lorem quis mauris egestas eleifend. Pellentesque ut ligula a lacus porttitor lobortis. Donec sed nunc in augue ornare tristique adipiscing non nisi. 
-        %p
-          Donec id diam quis tortor commodo congue at eu velit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum iaculis dui a erat pretium bibendum. Donec sit amet turpis tellus. 
-      %div.buttons
-        %a.button{:href => "edit_comment"}
-          Editar 
-        %a.button{:href => "delete_comment"}
-          Borrar
-      %div.report-spam
-        %a{:href => "report_spam"}
-          Denunciar spam 
-     
-    %div.anonymous
-      %p
-        Para publicar un comentario tienes que identificarte con tu usuario. 
-      %div.buttons
-        %a.button{:href => "login"}
-          Identifícate 
-        %a.button{:href => "signup"}
-          Regístrate
-    
-
-
-#secondary-bar.sidebar
-
+- content_for :secondary_bar do
   %div.box
-    %h2 Ranking
-    %div.content 
-      %div.resource-ranking
+    %h2
+      = t("stories.sections.title")
+    %div.content
+      %div.story-sections
         %ol
-          %li 
-            = image_tag "rank_5stars.png"
-            / img puesta con su alt y title
-            / Las he interpretado como discretas (5,4,3,2,1,0) pero veo que en La Palma es diferente...
-            Museo del Prado
-            %div.section
-              en 
-              %a{:href => "recursos_museos"}
-                Museos
-          %li 
-            = image_tag "rank_4stars.png"
-            El Musical
-            %div.section
-              en 
-              %a{:href => "recursos_espectaculos"}
-                Espectáculos
-          %li 
-            = image_tag "rank_4stars.png"
-            Museo del Prado
-            %div.section
-              en 
-              %a{:href => "recursos_museos"}
-                Museos
-        %div.read-more
-          %a{:href => "news"}
-            Ver más recursos
- 
+          - Story::Section.order('position').each do |section|
+            %li
+              = link_to(section.name, {:section => section}, :class => "section")

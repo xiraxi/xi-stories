@@ -1,5 +1,5 @@
 %div.story
-  = form_for :story, :html => {:id => "story_form"}, :url => { :action => :create } do |form|
+  = form_for @story, :html => {:id => "story_form"} do |form|
     %fieldset
       %legend
         = t("stories.form.data_title")
@@ -13,7 +13,7 @@
           = form.date_select :date, :start_year => 1900, :end_year => Date.today.year
         %li
           = form.label :section_id
-          = form.text_field :section_id
+          = form.select :section_id, Story::Section.all.map{ |s| [s.name, s.id] }
         %li
           = form.label :tag_list
           = form.text_field :tag_list
@@ -35,6 +35,6 @@
           = form.label :content
           = form.text_area :content, :size => "60x25"
 
-    - buttons_bar do
+    = buttons_bar do
       = button_ok
       = button_cancel(stories_path)
