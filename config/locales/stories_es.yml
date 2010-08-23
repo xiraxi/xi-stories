@@ -4,6 +4,8 @@ es:
     page_title: Noticias
     notice_saved: La noticia se ha guardado correctamente.
     metadata: "Añadido por %{user} el %{date} en %{section}"
+    new:
+      link: Nueva noticia 
     form:
       page_title: Noticias
       data_title: Datos de la noticia
@@ -13,8 +15,20 @@ es:
         new: Nueva noticia
     sections:
       title: Secciones
+  tag_cloud:
+    title: Nube de tags 
 
   activerecord:
+    attributes:
+      story:
+        title: Título
+        date: Fecha
+        section_id: Sección
+        tag_list: Lista de tags
+        draft: Borrador
+        breaking: Última hora
+        intro: Introducción
+        content: Contenido
     errors:
       story:
         attributes:
