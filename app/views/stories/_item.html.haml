@@ -12,10 +12,10 @@
   %div.metadata
     = t("stories.metadata", :user => item.user.complete_name, :date => l(item.date, :format => :as_date), :section => item.section.name)
   %div.intro
-    = item.intro
+    = sanitize item.intro
   - if !short
     %div.text 
-      = item.content
+      = sanitize item.content
 
     %div.buttons
       = link_button_edit(edit_story_path(item))

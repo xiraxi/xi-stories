@@ -30,10 +30,10 @@
       %ul
         %li
           = form.label :intro
-          = form.text_area :intro, :size => "60x15"
+          = form.text_area :intro, :size => "60x15", :class => "wysiwyg-editor"
         %li
           = form.label :content
-          = form.text_area :content, :size => "60x25"
+          = form.text_area :content, :size => "60x25", :class => "wysiwyg-editor"
 
     = buttons_bar do
       = button_ok
