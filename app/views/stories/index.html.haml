@@ -3,7 +3,8 @@
 %h1
   = t("stories.title")
 
-= render :partial => "item", :collection => @stories, :locals => { :short => true }
+%div.stories 
+  = render :partial => "item", :collection => @stories, :locals => { :short => true }
 
 = will_paginate @stories
 

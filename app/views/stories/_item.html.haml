@@ -1,15 +1,16 @@
-- if short
-  %h2
-    = link_to(item.title, story_path(item))
-- else
-  %h1
-    = item.title
-
 %div.story
+
+  - if short
+    %h2
+      = link_to(item.title, story_path(item))
+  - else
+    %h1
+      = item.title
+
   %div.user-photo
     = raw user_photo(item.user)
   %div.metadata
-    = t("stories.metadata", :user => item.user.complete_name, :date => l(item.date, :format => :long), :section => item.section.name)
+    = t("stories.metadata", :user => item.user.complete_name, :date => l(item.date, :format => :as_date), :section => item.section.name)
   %div.intro
     = item.intro
   - if !short
