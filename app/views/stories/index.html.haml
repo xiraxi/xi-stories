@@ -8,16 +8,19 @@
 = will_paginate @stories
 
 - content_for :secondary_bar do
-  %div.box
-    %h2
-      = t("stories.sections.title")
-    %div.content
-      %div.story-sections
-        %ul
-          - if current_user and current_user.admin?
+  - if current_user and current_user.admin?
+    .box.manage_box
+      %h2= t("stories.manage.title")
+      .content
+        .story_manage
+          %ul
             %li= link_to t("stories.new.link"), new_story_path 
-        %ol
+
+  .box.section_box
+    %h2= t("stories.sections.title")
+    .content
+      .story-sections
+        %ul
           - Story::Section.order('position').each do |section|
-            %li
-              = link_to(section.name, {:section => section}, :class => "section")
+            %li= link_to(section.name, {:section => section}, :class => "section")
   = #tag_cloud_generator(Story)
