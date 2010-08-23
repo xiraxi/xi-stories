@@ -1,0 +1,22 @@
+es:
+  stories:
+    title: Noticias
+    page_title: Noticias
+    notice_saved: La noticia se ha guardado correctamente.
+    metadata: "Añadido por %{user} el %{date} en %{section}"
+    form:
+      page_title: Noticias
+      data_title: Datos de la noticia
+      text_title: Texto de la noticia
+      title:
+        edit: Editar noticia
+        new: Nueva noticia
+    sections:
+      title: Secciones
+
+  activerecord:
+    errors:
+      story:
+        attributes:
+          author:
+            existance: "no existe"
