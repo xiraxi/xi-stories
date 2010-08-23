@@ -13,6 +13,9 @@
       = t("stories.sections.title")
     %div.content
       %div.story-sections
+        %ul
+          - if current_user and current_user.admin?
+            %li= link_to t("stories.new.link"), new_story_path 
         %ol
           - Story::Section.order('position').each do |section|
             %li
