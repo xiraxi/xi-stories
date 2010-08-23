@@ -21,6 +21,16 @@ en:
     title: Tag cloud
 
   activerecord:
+    attributes:
+      story:
+        title: Title
+        date: Date
+        section_id: Section
+        tag_list: Tags list
+        draft: Draft
+        breaking: Breaking
+        intro: Introduction
+        content: Content
     errors:
       story:
         attributes:
