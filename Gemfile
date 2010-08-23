@@ -38,6 +38,7 @@ gem "xi-users", :path => "../xi-users/"
 gemspec
 gemspec :path => "../xiraxi-core/"
 gemspec :path => "../xi-users/"
+gemspec :path => "../xi-comments/"
 
 group :development, :test do
   gem "rspec"

@@ -5,6 +5,7 @@ class Story < ActiveRecord::Base
   belongs_to :section, :class_name => "Story::Section"
 
   has_friendly_id :title, :use_slug => true, :max_length => 50
+  has_comments
 
   validates :title,   :length => { :maximum => 255 }, :presence => true
   validates :section, :presence => true

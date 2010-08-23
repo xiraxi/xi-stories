@@ -1,3 +1,5 @@
 - content_for :page_title, t("stories.page_title") 
 
 = render :partial => "item", :locals => { :short => false, :item => @story }
+
+= comments_for @story
