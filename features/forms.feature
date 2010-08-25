@@ -64,24 +64,39 @@ Feature: Stories forms
         And I submit the form
         Then these fields have errors: Title, Intro
 
+    @update
+    Scenario Outline: only admin users can see button to update stories
+      Given <session> session
+      And the following story sections exist:
+          | name  |
+          | Foo   |
+      And the following stories exist
+          | title | date        | intro | content     | section_id  |
+          | foo   | 2010-10-10  | Bar   | Lorem Ipsum | 1           |
+      When I go to the edit story page with id: "foo"
+      Then the page <verb> "Edit" 
+      Scenarios:
+          | session        | verb             |
+          | an admin       | contains         |
+          | an anonymous   | does not contain |
+          | a regular user | does not contain |
+
     @delete
-    Scenario Outline: non admin users can not delete stories
-        Given <session> session
-        And the following story sections exist:
-            | name  |
-            | Foo   |
-        And the following stories exist
-            | title | date        | intro | content     | section_id  |
-            | foo   | 2010-10-10  | Bar   | Lorem Ipsum | 1           |
-        When I go to the story page with id: "foo"
-        And I click on "Delete"
-        Then I see the <content>
-
-        Scenarios:
-            | session        | content          |
-            | an anonymous   | "login form" box |
-            | a regular user | forbidden page   |
-
+    Scenario Outline: only admin users can see button to delete stories
+      Given <session> session
+      And the following story sections exist:
+          | name  |
+          | Foo   |
+      And the following stories exist
+          | title | date        | intro | content     | section_id  |
+          | foo   | 2010-10-10  | Bar   | Lorem Ipsum | 1           |
+      When I go to the story page with id: "foo"
+      Then the page <verb> "Delete" 
+      Scenarios:
+          | session        | verb             |
+          | an admin       | contains         |
+          | an anonymous   | does not contain |
+          | a regular user | does not contain |
 
     @delete
     Scenario: admin can delete stories
@@ -95,5 +110,4 @@ Feature: Stories forms
         When I go to the story page with id: "foo"
         And I click on "Delete"
         Then I see the stories page
-        And the flash box conteins "News succesfully deleted"
-        And the page does not contain "story" item
+        And the flash box contains "News successfully deleted"

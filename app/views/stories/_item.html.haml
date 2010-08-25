@@ -1,25 +1,22 @@
-%div.story
-
+.story
   - if short
-    %h2
-      = link_to(item.title, story_path(item))
+    %h2= link_to(item.title, story_path(item))
   - else
-    %h1
-      = item.title
+    %h1= item.title
 
-  %div.user_photo
+  .user_photo
     = raw user_photo(item.user)
-  %div.metadata
+  .metadata
     = t("stories.metadata", :user => item.user.complete_name, :date => l(item.date, :format => :as_date), :section => item.section.name)
   - if short
-    %div.intro
+    .intro
       = truncate(sanitize([item.intro,item.content].join("&nbsp;"), :tags => []), :length => 300)
   - else
-    %div.intro
+    .intro
       = sanitize item.intro
-    %div.text 
+    .text 
       = sanitize item.content
-
-    %div.buttons
-      = link_button_edit(edit_story_path(item))
-      = link_button_delete(story_path(item))
+    - if current_user and current_user.admin?
+      .buttons
+        = link_button_edit(edit_story_path(item))
+        = link_button_delete(story_path(item))

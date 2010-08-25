@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  only_admins( :new, :create, :edit, :update )
+  only_admins( :new, :create, :edit, :update, :destroy)
 
   def index
     if params[:draft]
@@ -83,7 +83,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-   begin
+    begin
       @story = Story.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       return not_found
