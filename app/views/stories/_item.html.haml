@@ -11,9 +11,12 @@
     = raw user_photo(item.user)
   %div.metadata
     = t("stories.metadata", :user => item.user.complete_name, :date => l(item.date, :format => :as_date), :section => item.section.name)
-  %div.intro
-    = sanitize item.intro
-  - if !short
+  - if short
+    %div.intro
+      = sanitize(truncate([item.intro,item.content].join("&nbsp;"), :length => 250))
+  - else
+    %div.intro
+      = sanitize item.intro
     %div.text 
       = sanitize item.content
 
