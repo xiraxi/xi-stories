@@ -16,7 +16,10 @@
       = sanitize item.intro
     .text 
       = sanitize item.content
-    - if current_user and current_user.admin?
-      .buttons
-        = link_button_edit(edit_story_path(item))
-        = link_button_delete(story_path(item))
+
+  = tag_list item
+
+  - if !short and current_user and current_user.admin?
+    .buttons
+      = link_button_edit(edit_story_path(item))
+      = link_button_delete(story_path(item))
