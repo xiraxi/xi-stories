@@ -16,6 +16,7 @@
         .story_manage
           %ul
             %li= link_to t("stories.new.link"), new_story_path 
+            %li= link_to t("stories.drafts.link"), drafts_stories_path 
 
   .box.section_box
     %h2= t("stories.sections.title")

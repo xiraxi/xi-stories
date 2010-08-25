@@ -3,9 +3,13 @@ en:
     title: News
     page_title: News
     notice_saved: News successfully saved
+    notice_deleted: News successfully deleted
     metadata: "Added by %{user} at %{date} in %{section}"
     new:
       link: New story
+    drafts:
+      link: Drafts
+      notice: Listing drafts
     form:
       page_title: News form
       data_title: News data

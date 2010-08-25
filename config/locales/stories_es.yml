@@ -3,9 +3,13 @@ es:
     title: Noticias
     page_title: Noticias
     notice_saved: La noticia se ha guardado correctamente.
+    notice_deleted: La noticias se ha borrado correctamente.
     metadata: "Añadido por %{user} el %{date} en %{section}"
     new:
       link: Nueva noticia 
+    drafts:
+      link: Borradores
+      notice: Mostrando borradores
     form:
       page_title: Noticias
       data_title: Datos de la noticia

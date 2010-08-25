@@ -99,8 +99,8 @@ Feature: Stories list
         Given an admin session
         When I go to the stories page
         And I click on "Drafts"
-        Then the header box contains "Drafts stories"
-        Then I see 0 "story-item" boxes
+        Then the flash box contains "Listing drafts"
+        Then I see 0 "story" boxes
 
     Scenario Outline: non admins cannot access to drafts index
         Given <session> session
@@ -111,3 +111,14 @@ Feature: Stories list
             | session        | content          |
             | an anonymous   | "login form" box |
             | a regular user | forbidden page   |
+
+    Scenario: deleted stories are not shown on index
+        Given an anonymous session
+        And the following story sections exist:
+            | name  |
+            | Foo   |
+        And the following stories exist
+            | title | date        | intro | content     | section_id  | deleted_at  |
+            | foo   | 2010-10-10  | Bar   | Lorem Ipsum | 1           | 2010-11-10  |
+        When I go to the stories page
+        Then I see 0 "story" boxes

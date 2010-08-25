@@ -64,3 +64,36 @@ Feature: Stories forms
         And I submit the form
         Then these fields have errors: Title, Intro
 
+    @delete
+    Scenario Outline: non admin users can not delete stories
+        Given <session> session
+        And the following story sections exist:
+            | name  |
+            | Foo   |
+        And the following stories exist
+            | title | date        | intro | content     | section_id  |
+            | foo   | 2010-10-10  | Bar   | Lorem Ipsum | 1           |
+        When I go to the story page with id: "foo"
+        And I click on "Delete"
+        Then I see the <content>
+
+        Scenarios:
+            | session        | content          |
+            | an anonymous   | "login form" box |
+            | a regular user | forbidden page   |
+
+
+    @delete
+    Scenario: admin can delete stories
+        Given an admin session
+        And the following story sections exist:
+            | name  |
+            | Foo   |
+        And the following stories exist
+            | title | date        | intro | content     | section_id  |
+            | foo   | 2010-10-10  | Bar   | Lorem Ipsum | 1           |
+        When I go to the story page with id: "foo"
+        And I click on "Delete"
+        Then I see the stories page
+        And the flash box conteins "News succesfully deleted"
+        And the page does not contain "story" item

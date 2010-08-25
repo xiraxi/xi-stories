@@ -9,6 +9,7 @@ class StoriesController < ApplicationController
         return
       end
       return forbidden unless current_user.admin?
+      flash[:notice] = I18n.t("stories.drafts.notice")
       dataset = Story.draft
     else
       dataset = Story.visible
@@ -30,7 +31,11 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.find(params[:id])
+    begin
+      @story = Story.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      return not_found
+    end
 
     if current_user and not current_user.admin? and @story.draft?
       return not_found
@@ -62,7 +67,7 @@ class StoriesController < ApplicationController
   end
 
   def update
-    begin
+   begin
       @story = Story.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       return not_found
@@ -74,6 +79,22 @@ class StoriesController < ApplicationController
       redirect_to story_path(@story)
     else
       render :action => "edit"
+    end
+  end
+
+  def destroy
+   begin
+      @story = Story.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      return not_found
+    end
+    @story.deleted_at = Time.zone.now
+
+    if @story.save
+      flash[:notice] = I18n.t("stories.notice_deleted") 
+      redirect_to stories_path
+    else
+      render :action => "show", :id => @story
     end
   end
 
