@@ -20,7 +20,7 @@ class Story < ActiveRecord::Base
     end
   end
 
-  default_scope   where("deleted_at IS NULL")
+  default_scope   where("deleted_at IS NULL").order("date, created_at DESC")
   scope :draft,   where(:draft => true)
   scope :visible, where(:draft => false)
 

@@ -26,7 +26,7 @@ class StoriesController < ApplicationController
       @tag_selected = o
     end
 
-    @stories = dataset.order(:date).paginate(:page => params[:page], :per_page => 5)
+    @stories = dataset.paginate(:page => params[:page], :per_page => 5)
 
   end
 
