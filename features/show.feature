@@ -39,6 +39,7 @@ Feature: Stories show action
         Given a user exists with login: "john", password: "john", admin: false
         And a story exists with title: "First story"
         And a session logged to "john:john"
+        And "xi_stories" configuration for "comments" is true
         When I go to stories page
         And I click on "First story" within the "story-item" box
         And I click on "Add a new comment"
@@ -49,3 +50,11 @@ Feature: Stories show action
         And the page contains these boxes within "comment item":
             | author-name | john                |
             | content     | Comment for testing |
+
+    @comments
+    Scenario: user can't comment if comments are disabled
+        Given a regular user session
+        And a story exists with title: "foo"
+        And "xi_stories" configuration for "comments" is false
+        When I go to the story page with id: "foo"
+        Then the page does not contain the "comments" box
