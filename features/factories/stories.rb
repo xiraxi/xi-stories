@@ -6,4 +6,5 @@ Factory.define :story do |s|
   s.draft false
   s.date Time.zone.now
   s.association :user, :factory => :user
+  s.lang "en"
 end

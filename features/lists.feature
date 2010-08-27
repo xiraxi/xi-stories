@@ -8,6 +8,22 @@ Feature: Stories list
         Then I see 5 "story" boxes
         And I see the "pagination" box
 
+    @list
+    Scenario Outline: stories are lists by lang
+      Given an anonymous session
+      And the following stories exist
+        | title         | lang  |
+        | spanish story | es    |
+        | english story | en    |
+      And locale is "<locale>"
+      When I go to the stories page
+      Then I see 1 "story" boxes
+
+      Scenarios:
+        | locale  |
+        | es      |
+        | en      |
+
     @list @tags @anonymous
     Scenario: results can be filtered by a tag
         Given an anonymous session

@@ -23,6 +23,7 @@ class Story < ActiveRecord::Base
   default_scope   where("deleted_at IS NULL").order("date, created_at DESC")
   scope :draft,   where(:draft => true)
   scope :visible, where(:draft => false)
+  scope :by_lang, proc { |locale| where(:lang => locale) }
 
   acts_as_taggable
   # Exclude deleted stories tags 

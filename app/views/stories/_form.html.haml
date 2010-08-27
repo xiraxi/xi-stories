@@ -23,6 +23,9 @@
         %li
           = form.check_box :breaking
           = form.label :breaking
+        %li
+          = form.label :lang
+          = form.select :lang, locales_for_select
 
     %fieldset
       %legend

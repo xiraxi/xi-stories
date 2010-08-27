@@ -15,6 +15,9 @@ class StoriesController < ApplicationController
       dataset = Story.visible
     end
 
+    # Filter by lang
+    dataset = dataset.by_lang(I18n.locale.to_s)
+
     if o = params[:section]
       section = Story::Section.find(o)
       dataset = dataset.where(["section_id = ?", section.id])
