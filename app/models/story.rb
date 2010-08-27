@@ -26,9 +26,10 @@ class Story < ActiveRecord::Base
   scope :by_lang, proc { |locale| where(:lang => locale) }
 
   acts_as_taggable
-  # Exclude deleted stories tags 
-  def self.tag_counts(*args)
-    with_scope(where('stories.deleted_at IS NULL')) do
+
+  # filter stories by locale
+  def self.tag_counts_on(*args)
+    with_scope(where(:lang => I18n.locale.to_s)) do
       super(*args)
     end
   end
