@@ -34,11 +34,13 @@ gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branc
 
 gem "xiraxi-core", :path => "../xiraxi-core/"
 gem "xi-users", :path => "../xi-users/"
+gem "basic-crud", :path => "../basic-crud/"
 
 gemspec
 gemspec :path => "../xiraxi-core/"
 gemspec :path => "../xi-users/"
 gemspec :path => "../xi-comments/"
+gemspec :path => "../basic-crud/"
 
 group :development, :test do
   gem "rspec"
