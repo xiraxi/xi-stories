@@ -1,8 +1,8 @@
 class Story::SectionsController < ApplicationController
   
-  only_admins
+  admin_section
 
-  include ::BasicCrud::Controller
+  include BasicCrud::Controller
 
   def model
     Story::Section

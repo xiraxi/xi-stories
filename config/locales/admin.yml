@@ -1,0 +1,16 @@
+
+en:
+  admin_index:
+    groups:
+      story: Stories
+
+    items:
+      story_sections: Sections
+
+es:
+  admin_index:
+    groups:
+      story: Noticias
+
+    items:
+      story_sections: Secciones
