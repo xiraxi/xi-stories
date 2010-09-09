@@ -2,7 +2,7 @@ class Story::SectionsController < ApplicationController
   
   only_admins
 
-  include BasicCRUD
+  include ::BasicCrud::Controller
 
   def model
     Story::Section
