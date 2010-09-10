@@ -6,6 +6,20 @@ en:
 
     items:
       story_sections: Sections
+    
+    intro: "Welcome to the management system! Please choose an option from the menu to the left."
+
+  basic_crud:
+    list:
+      title: List
+      actions: Action
+    new:
+      action: Create new
+    edit:
+      action: Edit
+    destroy:
+      action: Delete
+
 
 es:
   admin_index:
@@ -14,3 +28,17 @@ es:
 
     items:
       story_sections: Secciones
+
+    intro: "¡Bienvenido al gestor de administración! Escoge una opción del menú a tu izquierda."
+
+  basic_crud:
+    list:
+      title: Listado
+      actions: Acción
+    new:
+      action: Crear nuevo
+    edit:
+      action: Editar
+    destroy:
+      action: Borrar
+
