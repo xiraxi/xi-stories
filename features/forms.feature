@@ -40,11 +40,7 @@ Feature: Stories forms
         And I submit the form
         And I go to the stories page
         Then I see 1 "story" boxes
-        And the page contains these boxes within "story":
-            | Title   | A new story                 |
-            | Date    | 2010-10-10                  |
-            | Intro   | This a short story          |
-            | Content | This story with a happy end |
+        And I should see "A new story" within "story"
 
     @create
     Scenario Outline: non admin users can not create stories
