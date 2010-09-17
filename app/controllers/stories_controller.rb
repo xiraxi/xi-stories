@@ -2,6 +2,7 @@ class StoriesController < ApplicationController
 
   only_admins( :new, :create, :edit, :update, :destroy)
 
+  SearchWithWords = Rails.application.config.xi_stories.words_search
   def index
     if params[:draft]
       unless current_user
@@ -17,6 +18,11 @@ class StoriesController < ApplicationController
 
     # Filter by lang
     dataset = dataset.by_lang(I18n.locale.to_s)
+
+    # Filter by XiSearch
+    if SearchWithWords and params[:q]
+      dataset = dataset.with_words(params[:q])
+    end
 
     if o = params[:section]
       section = Story::Section.find(o)

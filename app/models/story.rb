@@ -34,4 +34,6 @@ class Story < ActiveRecord::Base
     end
   end
 
+  has_text_search :title, :intro, :content
+
 end

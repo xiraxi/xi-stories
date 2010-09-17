@@ -40,3 +40,8 @@ es:
         attributes:
           author:
             existance: "no existe"
+
+  search:
+    group:
+      story:
+        title: Noticias

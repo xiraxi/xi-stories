@@ -40,3 +40,8 @@ en:
         attributes:
           author:
             existance: "doesn't exists"
+
+  search:
+    group:
+      story:
+        title: News
