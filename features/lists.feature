@@ -28,15 +28,15 @@ Feature: Stories list
     Scenario: results can be filtered by a tag
         Given an anonymous session
         And the following stories exist
-            | title        | tag_list |
-            | first story  | red      |
-            | second story | red      |
-            | dummy story  | green    |
-        When I go to stories page
-        And I click on "red" within the "tag-cloud" box
-        Then I see this stories:
-            | first story  |
-            | second story |
+            | title          | tag_list |
+            | "first story"  | red      |
+            | "second story" | red      |
+            | "dummy story"  | green    |
+        When I go to the stories page with tag: "red"
+        Then I see 2 "story" boxes
+        Then the page contains "first story"
+        Then the page contains "second story"
+        Then the page does not contain "dummy story"
 
     @list @anonymous
     Scenario: results can be filtered by a section
@@ -46,15 +46,15 @@ Feature: Stories list
             | blue  | 1   |
             | white | 2   |
         And the following stories exist
-            | title        | section_id |
-            | first story  | 1          |
-            | second story | 1          |
-            | dummy story  | 2          |
-        When I go to the stories page
-        And I click on "blue" within the "sections" box
-        Then I see these stories:
-            | first story  |
-            | second story |
+            | title          | section_id |
+            | "first story"  | 1          |
+            | "second story" | 1          |
+            | "dummy story"  | 2          |
+        When I go to the stories page with section: "blue"
+        Then I see 2 "story" boxes
+        Then the page contains "first story"
+        Then the page contains "second story"
+        Then the page does not contain "dummy story"
 
     @list @tags @anonymous
     Scenario: index page shows a tags cloud
