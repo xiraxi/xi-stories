@@ -41,6 +41,7 @@ gemspec :path => "../xiraxi-core/"
 gemspec :path => "../xi-users/"
 gemspec :path => "../xi-comments/"
 gemspec :path => "../basic-crud/"
+gemspec :path => "../xi-search/"
 
 group :development, :test do
   gem "rspec"
