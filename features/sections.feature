@@ -16,9 +16,9 @@ Feature: Story sections
         And I fill in the following:
             | Name     | Test section |
             | Position | 1            |
-        And I submit the form
+        And I submit the form "new_story_section"
         Then a story section should exist with name: "Test section"
-        And the flash box contains "Section was successfully created."
+        And the flash box contains "Successfully created"
 
     Scenario: story section list is ordered by position
         Given an anonymous session
@@ -40,16 +40,16 @@ Feature: Story sections
             | Red   |
             | Blue  |
         When I go to the story sections page
-        And I click on "Destroy"
-        Then the flash box contains "Story section has been removed."
+        And I click on "Delete"
+        Then the flash box contains "Successfully deleted"
         And there are no story section instances
 
     Scenario: used story sections can not be removed
         Given an admin session
-        And a section exists with name: "Main"
-        And a story exists with section: "Main"
+        And a story section exists with name: "Main", id: 1
+        And a story exists with section_id: 1
         When I go to the story sections page
-        And I click on "Remove this section"
-        Then the flash box contains "Story section can not be removed because it is used in 1 story."
+        And I click on "Delete"
+        Then the flash box contains "Could not be deleted"
         And a story section should exist with name: "Main"
 
