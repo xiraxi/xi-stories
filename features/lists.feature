@@ -76,20 +76,13 @@ Feature: Stories list
 
     @list
     Scenario: index items show a reduced version of the story
-        Given a user exists with email: "john@example.com", password: "john", admin: true
-        And a section exists with name: "News"
-        And a story exists with title: "First story", publisher: "publisher", date: "today", section: "News", tags: "red, green", intro: "Short intro", content: "Long content"
-        And a session logged to "john:john"
+        Given a user exists with email: "john@example.com", password: "john", admin: true, id: 1
+        And a story section exists with name: "News", id: 1
+        And a story exists with title: "First story", user_id: 1, date: "2010/01/01", section_id: 1, tag_list: "red, green", intro: "Short intro", content: "Long content"
+        And an anonymous session
         When I go to the stories page
-        Then I see 1 "story" box
-        And the page contains these boxes within "story":
-            | title     | First story  |
-            | Publisher | john         |
-            | Date      | today        |
-            | Section   | News         |
-            | Tags      | red, green   |
-            | Intro     | Short intro  |
-            | Content   | Long content |
+        Then I see 1 "story" boxes
+        And there is not a "text" box within the "story" box
 
     Scenario: admins can access to the new story form
         Given an admin session
