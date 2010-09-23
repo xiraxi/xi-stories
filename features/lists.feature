@@ -68,10 +68,11 @@ Feature: Stories list
             | orange    |
             | blue      |
         When I go to the stories page
-        Then there is a link with "red" text within "tag-cloud"
-        And there is a link with "green" text within "tag-cloud"
-        And there is a link with "orange" text within "tag-cloud"
-        And there is a link with "blue" text within "tag-cloud"
+        Then I see the "tag-cloud" box
+        And the "tag-cloud" box contains "red"
+        And the "tag-cloud" box contains "green"
+        And the "tag-cloud" box contains "orange"
+        And the "tag-cloud" box contains "blue"
 
     @list
     Scenario: index items show a reduced version of the story
